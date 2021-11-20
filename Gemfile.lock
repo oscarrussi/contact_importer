@@ -80,6 +80,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    credit_card_detector (0.4)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -215,6 +216,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  credit_card_detector
   devise
   jbuilder (~> 2.7)
   puma (~> 5.0)
