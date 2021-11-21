@@ -1,0 +1,5 @@
+<%= form_tag("/contacts/", method: "post", multipart: true ) do %>
+    <%= label_tag(:q, "Add contacts:") %><br><br>
+    <%= file_field_tag(:file) %><br><br>
+    <%= submit_tag("Upload file") %>
+<% end %>
