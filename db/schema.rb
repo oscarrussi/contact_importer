@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_162047) do
+ActiveRecord::Schema.define(version: 2021_11_21_165624) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2021_11_21_162047) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "csv_files", force: :cascade do |t|
+    t.string "filename"
+    t.string "aasm_state", default: "On Hold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "failed_contacts", force: :cascade do |t|
