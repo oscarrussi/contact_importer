@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_165624) do
+ActiveRecord::Schema.define(version: 2021_11_21_233226) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.datetime "birth"
     t.string "phone"
     t.string "address"
-    t.string "credit_card"
-    t.integer "last_card_numbers"
+    t.string "card_number"
     t.string "franchise"
     t.string "email"
     t.integer "user_id", null: false
@@ -39,8 +38,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_165624) do
     t.string "birth"
     t.string "phone"
     t.string "address"
-    t.string "credit_card"
-    t.string "last_card_numbers"
+    t.string "card_number"
     t.string "franchise"
     t.string "email"
     t.integer "user_id", null: false
