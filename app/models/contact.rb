@@ -13,6 +13,10 @@ class Contact < ApplicationRecord
   validates :email, uniqueness: { scope: :user_id }
   validates_presence_of :name, :phone, :address, :email, :user_id
 
+  def birth_human_date_format
+    self.birth.stamp("1999 March 1")  
+  end
+
   private
 
   def iso_8601_date_format

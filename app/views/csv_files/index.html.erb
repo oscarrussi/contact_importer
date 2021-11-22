@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>Uploaded at</th>
+      <th>State</th>
       <th>Link donwload</th>
     </tr>
   </thead>
@@ -11,6 +12,7 @@
     <% @files.each do |file| %>
       <tr>
         <td><%= file.created_at %></td>
+        <td><%= file.aasm_state %></td>
         <td><%= link_to file.filename, rails_blob_path(file.file, disposition: 'attachment') %></td>
       </tr>
     <% end %>
