@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -38,6 +38,10 @@ gem 'sinatra', github: 'sinatra/sinatra'
 gem 'aws-sdk-s3', require: false
 
 gem 'jwt'
+
+gem 'aasm'
+
+gem "csv"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

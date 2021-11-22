@@ -30,6 +30,7 @@ class Contact < ApplicationRecord
       return false
     end
   end
+
   def valid_card_number
     brand_name = CreditCardDetector::Detector.new(credit_card).brand_name
     if brand_name.nil?

@@ -1,27 +1,31 @@
-require 'csv'
-
 class LoadContactsJob < ApplicationJob
   queue_as :default
 
-  def perform
-    CSV.parse(CsvFile.first.file.download, headers: true) do |row|
-      category_from_csv(row)
+  def perform(file, user_id)
+    @any_success=false
+    CSV.parse(file.file.download, headers: true) do |row|
+      file.aasm.fire!(:process) if file.aasm_state == "on_hold"
+      contact_from_csv(row, user_id)
     end
-    puts 'categories successfully updated'
+    if file.aasm_state == "on_hold" || @any_success
+      file.aasm.fire!(:finish) 
+    else
+      file.aasm.fire!(:fail) 
+    end
+    puts "contacts successfully updated"
   rescue StandardError => e
     puts e.message
   end
 
   private
 
-  def category_from_csv(row)
-    category = Category.find_by_cod(row['cod'])
-    save_category_from_csv(row, category.nil? ? Category.new : category)
-  end
-
-  def save_category_from_csv(row, category)
-    category.cod = row['cod']
-    category.name = row['name']
-    category.save
+  def contact_from_csv(row, user_id)
+    contact = Contact.new(name: row["name"], date_of_birth: row["date_of_birth"], phone: row["phone"], address: row["address"], credit_card: row["credit_card"], email: row["email"], user_id: user_id)
+    if contact.valid?
+      contact.save
+      @any_success=true
+    end
+    failed=FailedContact.new(name: row["name"], birth: row["date_of_birth"], phone: row["phone"], address: row["address"], credit_card: row["credit_card"], email: row["email"], user_id: user_id, error_message: contact.errors.messages)
+    failed.save
   end
 end
