@@ -37,7 +37,8 @@ class Contact < ApplicationRecord
   end
 
   def valid_card_number
-    brand_name = CreditCardDetector::Detector.new(credit_card).brand_name
+    detector = CreditCardDetector::Detector.new(credit_card)
+    brand_name = detector.brand.nil? ? detector.brand_name : detector.brand.id
     if brand_name.nil?
       self.errors[:credit_card] << "invalid credit card number"
     else

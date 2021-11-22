@@ -32,6 +32,8 @@ gem 'devise'
 
 gem 'credit_card_detector'
 
+gem 'credit_card_validations'
+
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra'
 
