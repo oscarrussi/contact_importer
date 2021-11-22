@@ -4,7 +4,7 @@ FactoryBot.define do
   2.times {number << Faker::PhoneNumber.subscriber_number(length: 3)}
   2.times {number << Faker::PhoneNumber.subscriber_number(length: 2)}
   phone_number = "(+#{country_code}) #{number.join(["-", " "].sample)}"
-  factory :user do
+  factory :contact do
     name { Faker::Name.name }
     date_of_birth {Faker::Date.between(from: '1000-01-01', to: '2021-09-23')}
     email { Faker::Internet.unique.email }

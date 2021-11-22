@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user do
+  factory :failed_contact do
     name { Faker::Alphanumeric.alphanumeric(number: (1..30).to_a.sample)  }
     birth {Faker::Alphanumeric.alphanumeric(number: (1..30).to_a.sample) }
     email { Faker::Alphanumeric.alphanumeric(number: (1..30).to_a.sample)  }
