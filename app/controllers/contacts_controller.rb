@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
   private
 
   def save_csv(uploaded_io)
-    id = CsvFile.create!(file: uploaded_io, filename: uploaded_io.original_filename).id
+    id = CsvFile.create!(file: uploaded_io, filename: uploaded_io.original_filename, user_id: current_user.id).id
     CsvFile.find(id)
   end
 end

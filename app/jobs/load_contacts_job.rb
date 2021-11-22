@@ -24,6 +24,7 @@ class LoadContactsJob < ApplicationJob
     if contact.valid?
       contact.save
       @any_success=true
+      return
     end
     failed=FailedContact.new(name: row["name"], birth: row["date_of_birth"], phone: row["phone"], address: row["address"], credit_card: row["credit_card"], email: row["email"], user_id: user_id, error_message: contact.errors.messages)
     failed.save
