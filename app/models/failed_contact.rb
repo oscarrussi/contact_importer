@@ -1,4 +1,5 @@
 class FailedContact < ApplicationRecord
+  include ContactMethods
   attr_accessor :credit_card
   belongs_to :user
   validates_presence_of :error_message

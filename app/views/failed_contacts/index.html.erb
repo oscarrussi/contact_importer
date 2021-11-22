@@ -9,19 +9,21 @@
       <th>Address</th>
       <th>Credit card</th>
       <th>Email</th>
+      <th>Errors</th>
     </tr>
   </thead>
 
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-      <td><%= contact.created_at %></td>
+        <td><%= contact.created_at %></td>
         <td><%= contact.name %></td>
         <td><%= contact.birth %></td>
         <td><%= contact.phone %></td>
         <td><%= contact.address %></td>
         <td><%= contact.last_four_digits %></td>
         <td><%= contact.email %></td>
+        <td><%= contact.error_message %></td>
       </tr>
     <% end %>
   </tbody>

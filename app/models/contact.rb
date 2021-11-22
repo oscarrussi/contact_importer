@@ -1,4 +1,5 @@
 class Contact < ApplicationRecord
+  include ContactMethods
   attr_accessor :credit_card, :date_of_birth
   belongs_to :user
   validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
