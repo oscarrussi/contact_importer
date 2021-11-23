@@ -1,16 +1,13 @@
+require_relative "../support/api_helpers"
+include ApiHelpers
 FactoryBot.define do
-  country_code = Faker::PhoneNumber.subscriber_number(length: 2)
-  number=[]
-  2.times {number << Faker::PhoneNumber.subscriber_number(length: 3)}
-  2.times {number << Faker::PhoneNumber.subscriber_number(length: 2)}
-  phone_number = "(+#{country_code}) #{number.join(["-", " "].sample)}"
   factory :contact do
-    name { Faker::Name.name }
-    date_of_birth {Faker::Date.between(from: '1000-01-01', to: '2021-09-23')}
+    name { Faker::Alphanumeric.alphanumeric(number: (1..30).to_a.sample) }
+    date_of_birth { Faker::Date.between(from: '1000-01-01', to: '2021-09-23').to_s }
     email { Faker::Internet.unique.email }
-    phone { phone_number }
-    address {	Faker::Alphanumeric.alphanumeric(number: 10)}
+    phone { fake_phone_number}
+    address {	Faker::Alphanumeric.alphanumeric(number: (1..30).to_a.sample) }
     credit_card { CreditCardValidations::Factory.random }
-    user_id { FactoryBot.create(:author).id }
+    user_id { FactoryBot.create(:user).id }
   end
 end

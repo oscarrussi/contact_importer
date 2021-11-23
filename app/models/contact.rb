@@ -4,7 +4,7 @@ class Contact < ApplicationRecord
   belongs_to :user
   validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                       message: "invalid email format" }
-  validates :name, format: { with: /\A[a-zA-Z0-9\-]+\z/,
+  validates :name, format: { with: /\A[a-zA-Z0-9\- ]+\z/,
                             message: "only alphanumeric or minus symbol are allowed" }
   validate :iso_8601_date_format
   validates :phone, format: { with: /\A\(\+[0-9]{2}\)(( [0-9]{3}){2}( [0-9]{2}){2}| ([0-9]{3}\-){2}[0-9]{2}\-[0-9]{2})\z/,
@@ -23,7 +23,7 @@ class Contact < ApplicationRecord
     if date_format("%Y%m%d") || date_format("%F")
       self.birth = date_of_birth
     else
-      self.errors[:date_of_birth] << "Should use ISO 8601 (%Y%m%d or %F) format"
+      self.errors.add(:date_of_birth, message: "Should use ISO 8601 (%Y%m%d or %F) format")
     end
   end
 
@@ -40,7 +40,7 @@ class Contact < ApplicationRecord
     detector = CreditCardDetector::Detector.new(credit_card)
     brand_name = detector.brand.nil? ? detector.brand_name : detector.brand.id
     if brand_name.nil?
-      self.errors[:credit_card] << "invalid credit card number"
+      self.errors.add(:credit_card, message: "invalid credit card number")
     else
       self.franchise = brand_name
       self.card_number = JWT.encode({ credit_card_number: credit_card }, Rails.application.credentials[:secret_token], "HS256")
