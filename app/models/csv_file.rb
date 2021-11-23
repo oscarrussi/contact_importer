@@ -20,7 +20,7 @@ class CsvFile < ApplicationRecord
     end
 
     event :finish do
-      transitions from: ["on_hold", "processing"], to: :finished
+      transitions from: %w[on_hold processing], to: :finished
     end
   end
 end

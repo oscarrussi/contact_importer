@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'rubocop'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
@@ -43,11 +43,11 @@ gem 'jwt'
 
 gem 'aasm'
 
-gem "csv"
+gem 'csv'
 
-gem "pagy"
+gem 'pagy'
 
-gem "stamp"
+gem 'stamp'
 
 gem 'factory_bot_rails'
 
@@ -55,12 +55,12 @@ gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
-  gem 'rspec-rails'
+  gem 'bullet'
   gem 'rails-controller-testing'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem "bullet"
 end
 
 group :development do
@@ -80,4 +80,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

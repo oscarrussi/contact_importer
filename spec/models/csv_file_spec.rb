@@ -13,26 +13,26 @@ RSpec.describe CsvFile, type: :model do
   end
 
   describe 'methods' do
-    it "check transition from on_hold to processing" do
+    it 'check transition from on_hold to processing' do
       subject.aasm.fire!(:process)
-      expect(subject.aasm_state).to eq("processing")  
+      expect(subject.aasm_state).to eq('processing')
     end
 
-    it "check transition from processing to failed" do
+    it 'check transition from processing to failed' do
       subject.aasm.fire!(:process)
       subject.aasm.fire!(:fail)
-      expect(subject.aasm_state).to eq("failed")  
+      expect(subject.aasm_state).to eq('failed')
     end
 
-    it "check transition from on_hold to finished" do
+    it 'check transition from on_hold to finished' do
       subject.aasm.fire!(:finish)
-      expect(subject.aasm_state).to eq("finished")  
+      expect(subject.aasm_state).to eq('finished')
     end
 
-    it "check transition from processing to finished" do
+    it 'check transition from processing to finished' do
       subject.aasm.fire!(:process)
       subject.aasm.fire!(:finish)
-      expect(subject.aasm_state).to eq("finished")  
+      expect(subject.aasm_state).to eq('finished')
     end
   end
 end
