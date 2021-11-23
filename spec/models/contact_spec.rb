@@ -45,7 +45,6 @@ RSpec.describe Contact, type: :model do
 
     context "credit_card" do
       it "accept valid credit card" do
-        cards = ["371449635398431", "30569309025904", "6011111111111117", "3530111333300000", "5555555555554444", "4111111111111111"]
         contact = FactoryBot.create(:contact, credit_card: cards.sample)
         expect(contact.valid?).to eq(true)
       end
@@ -77,7 +76,23 @@ RSpec.describe Contact, type: :model do
   end
 
   describe "methods" do
-    subject { FactoryBot.create(:contact, date_of_birth: "1991-01-21").birth_human_date_format }
-    it { should eq("1991 January 21") }
+    context 'last_four_digits' do
+      describe 'methods' do
+        it "when valid credit card" do
+          random_card = cards.sample
+          contact = FactoryBot.create(:failed_contact, credit_card: random_card)
+          expect(contact.last_four_digits).to eq("****"+random_card[-4..-1])
+        end
+    
+        it "when invalid credit card" do
+          contact = FactoryBot.build(:failed_contact, credit_card: Faker::Number.between(from: 100, to: 999).to_s)
+          expect{contact.last_four_digits}.to raise_error(JWT::DecodeError)
+        end
+      end
+    end
+    context 'birth_human_date_format' do
+      subject { FactoryBot.create(:contact, date_of_birth: "1991-01-21").birth_human_date_format }
+      it { should eq("1991 January 21") }
+    end
   end
 end

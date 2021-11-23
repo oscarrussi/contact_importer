@@ -7,11 +7,7 @@ module ApiHelpers
     "(+#{country_code}) #{number.join(["-", " "].sample)}"
   end
 
-  def serialize_collection(models)
-    models.map { |model| ActiveModelSerializers::SerializableResource.new(model) }.to_json
-  end
-
-  def serialize_model(model)
-    ActiveModelSerializers::SerializableResource.new(model).to_json
+  def cards
+    ["371449635398431", "30569309025904", "6011111111111117", "3530111333300000", "5555555555554444", "4111111111111111"]
   end
 end

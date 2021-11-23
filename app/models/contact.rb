@@ -4,7 +4,7 @@ class Contact < ApplicationRecord
   belongs_to :user
   validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                       message: "invalid email format" }
-  validates :name, format: { with: /\A[a-zA-Z0-9\- ]+\z/,
+  validates :name, format: { with: /\A[a-zA-Z0-9\-]+\z/,
                             message: "only alphanumeric or minus symbol are allowed" }
   validate :iso_8601_date_format
   validates :phone, format: { with: /\A\(\+[0-9]{2}\)(( [0-9]{3}){2}( [0-9]{2}){2}| ([0-9]{3}\-){2}[0-9]{2}\-[0-9]{2})\z/,

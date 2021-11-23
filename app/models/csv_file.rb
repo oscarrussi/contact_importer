@@ -1,6 +1,7 @@
 class CsvFile < ApplicationRecord
   include AASM
   belongs_to :user
+  validates_presence_of :user_id
   has_one_attached :file
   validates :aasm_state, presence: true
 
